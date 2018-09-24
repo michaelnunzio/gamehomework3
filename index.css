@@ -1,0 +1,21 @@
+.psy {
+    text-align:center;
+    background: #ccc;
+    border-bottom: 8px purple dashed;
+    padding: 50px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: x-large;
+    color: darkgoldenrod;
+    
+}
+
+.everything {
+    background: lightgrey;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font: medium 22px;
+    color: 20px black;
+    padding-bottom: 100px;
+    padding-top: 30px;
+    border: 6px purple solid;
+}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<head>
+<title>Learn your JAVA SCRIPT</title>
+<link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<h1 class= "psy">Psychic Game!</h1>
+
+<body>
+
+    <div class= "everything"> 
+        <p id="header-text">Guess what letter I'm thinking of!</p>
+        <p id="wins"></p>
+        <p id="losses"></p>
+        <p id="guesses-left"></p>
+        <p id="guesses-so-far"></p>
+    </div>
+
+<script type= "text/javascript">
+/******************************************************************TEXT VARIABLES**************************************************************************/
+var winsText = document.getElementById("wins");
+var lossesText = document.getElementById("losses");
+var guessesLeftText = document.getElementById("guesses-left");
+var guessesSoFarText = document.getElementById("guesses-so-far");
+
+/******************************************************************TEXT VARIABLES**************************************************************************/
+
+
+/******************************************************************VARIABLES*******************************************************************************/
+// Variables
+var wins= 0;                // Count the number of wins
+var losses= 0;              // Count Num Losses
+var guessLeft= 9;           // Count for guesses left
+var winCondition= false;    // Condition for if the player won the game or not
+var randLetter = "a";       // The game's randomly chosen number
+var counter = 0             // General purpose counter
+var randNum = 0;
+
+// Array of all the possible guesses the player can choose from --> All letters in this case
+var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+      
+/******************************************************************VARIABLES*******************************************************************************/
+
+// (1) At the start of the game, the program picks a random letter from the letters array
+var guesses = [];                                               // Array to store each guess
+randNum = Math.floor(Math.random() * letters.length);           // Get a random num from 0 to letters.length --> (0,25)
+randLetter = letters[randNum];                                  // Use randNum as index to pair the random number to a letter
+console.log("Starting Random Numer: " + randNum);
+console.log("Staring Random Letter: " + randLetter);
+
+// (2) Get user guess and display it back to the screen
+document.onkeyup = function(event){
+    var userGuess = event.key;
+
+    if (letters.includes(userGuess)){
+        // If the user makes the same guess twice, do nothing
+        if (guesses.includes(userGuess)){
+            console.log("User entered same guess");
+            alert("Please do not enter the same guess twice!");
+
+        }
+        // Else, continue
+        else {
+            guesses += userGuess;
+            // (3) User Guess Handling Logic
+            // If user guess === randLetter, user wins!
+            if (userGuess === randLetter) {
+                wins += 1;
+                guesses = [];
+                guessLeft = 9;
+                console.log(wins);
+                randNum = Math.floor(Math.random() * letters.length);
+                randLetter = letters[randNum]; 
+                console.log("New Random Number: " + randNum);
+                console.log("New Random Letter: " + randLetter);
+            } 
+            else {
+                // If you didn't guess right, decrease the counter
+                guessLeft -= 1; 
+                if (guessLeft === 0 ) {
+                    console.log("You Lost");
+                    losses += 1;
+                    guessLeft = 9;
+                    guesses = [];
+                }
+            }
+        }
+
+        // Display Text to the screen      
+        winsText.textContent = "Wins: " + wins;
+        lossesText.textContent = "Losses: " + losses;
+        guessesLeftText.textContent = "Guesses Left " + guessLeft;
+        guessesSoFarText.textContent = "Your Guesses so far: " + guesses;
+    } 
+    else {
+        console.log("User presses a non-letter key!");
+        alert("Please enter letter keys only! You pressed: " + userGuess);
+    }
+}
+</script>
+    
+</body>
+
+</html>
