@@ -1,3 +1,5 @@
+
+
 .psy {
     text-align:center;
     background: #ccc;
@@ -18,4 +20,8 @@
     padding-bottom: 100px;
     padding-top: 30px;
     border: 6px purple solid;
+}
+
+body {
+    background-color: slategray;
 }
